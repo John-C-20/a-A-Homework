@@ -1,0 +1,51 @@
+# == Schema Information
+#
+# Table name: countries
+#
+#  name        :string       not null, primary key
+#  continent   :string
+#  area        :integer
+#  population  :integer
+#  gdp         :integer
+
+require_relative './sqlzoo.rb'
+
+def highest_gdp
+  # Which countries have a GDP greater than every country in Europe? (Give the
+  # name only. Some countries may have NULL gdp values)
+  execute(<<-SQL)
+  SELECT name
+  FROM countries
+  WHERE gdp > 
+    (SELECT max(gdp)  
+    FROM countries
+    WHERE continent = 'Europe')
+  SQL
+end
+
+def largest_in_continent
+  # Find the largest country (by area) in each continent. Show the continent,
+  # name, and area.
+  execute(<<-SQL)
+  SELECT continent, name, area 
+  FROM countries as row_in_countries 
+  WHERE row_in_countries.area = (
+    SELECT max(area)  
+    FROM countries
+    WHERE row_in_countries.continent = continent
+   )
+  SQL
+end
+
+def large_neighbors
+  # Some countries have populations more than three times that of any of their
+  # neighbors (in the same continent). Give theim  countries and continents.
+  execute(<<-SQL)
+  SELECT name, continent
+  FROM countries AS row_in_countries 
+  WHERE row_in_countries.population > 
+    (SELECT max(population) * 3 
+    FROM countries
+    WHERE row_in_countries.continent = continent AND name != row_in_countries.name)
+  SQL
+end
