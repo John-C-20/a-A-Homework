@@ -64,6 +64,12 @@ function dinerBreakfast() {
     };
 };
 
+function testFunc() { 
+    console.log('testing')
+
+    return "this is the return";
+};
+
 
 
 
@@ -72,44 +78,46 @@ function dinerBreakfast() {
 
 // Private method with access to private variables: 
 
-// const makeCounter = function () {
-//     let privateCounter = 0;
+const makeCounter = function () {
+    let privateCounter = 0;
 
-//     function changeBy(val) {
-//         privateCounter += val;
-//     }
-//     return {
-//         increment: function () {
-//             changeBy(1);
-//         },
-//         decrement: function () {
-//             changeBy(-1);
-//         },
-//         value: function () {
-//             return privateCounter;
-//         }
-//     }
-// };
-
+    function changeBy(val) {
+        privateCounter += val;
+    }
+    return {
+        increment: function () {
+            changeBy(1);
+        },
+        decrement: function () {
+            changeBy(-1);
+        },
+        value: function () {
+            return privateCounter;
+        }
+    }
+};
 
 
 // Public method with access to private variables:  
 
-// const counter = function () {
-//     let privateCounter = 0;
+const counter = function () {
+    let privateCounter = 0;
 
-//     function changeBy(val) {
-//         privateCounter += val;
-//     }
-//     return {
-//         increment: function () {
-//             changeBy(1);
-//         },
-//         decrement: function () {
-//             changeBy(-1);
-//         },
-//         value: function () {
-//             return privateCounter;
-//         }
-//     };
-// }();
+    function changeBy(val) {
+        privateCounter += val;
+    }
+    return {
+        increment: function () {
+            changeBy(1);
+        },
+        decrement: function () {
+            changeBy(-1);
+        },
+        value: function () {
+            return privateCounter;
+        }
+    };
+}();
+
+
+
