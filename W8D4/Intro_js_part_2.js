@@ -70,12 +70,6 @@ function testFunc() {
     return "this is the return";
 };
 
-
-
-
-
-
-
 // Private method with access to private variables: 
 
 const makeCounter = function () {
@@ -121,3 +115,29 @@ const counter = function () {
 
 
 
+
+function sumOfPrimes(n) {
+    function isPrime(num) {
+        for (i=2; i < num; i++){
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    function firstNPrimes(n) {
+        const primes = [] 
+        let i = 2  
+        while (n>0) {
+            if (isPrime(i)) {
+                primes.push(i) 
+                n--}
+            i++  
+        }
+        return primes; 
+    }
+
+    let sum = 0 
+    let primes = firstNPrimes(n) 
+    primes.forEach(ele => sum += ele)
+    return sum;
+};
